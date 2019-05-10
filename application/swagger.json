@@ -1,0 +1,713 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "区块链API服务",
+    "description": "共享医疗器械平台——区块链REST API服务器",
+    "version": "1.0.0",
+    "contact": {
+      "name": "hongweibin@forchain.com.cn"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Engineer",
+      "description": "跟台员相关接口"
+    },
+    {
+      "name": "Institute",
+      "description": "企业组织相关接口"
+    },
+    {
+      "name": "Order",
+      "description": "订单相关接口"
+    }
+  ],
+  "paths": {
+    "/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "创建订单",
+        "description": "创建订单",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "订单信息",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/order/{orderId}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "更新订单状态",
+        "description": "更新订单状态",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "description": "订单id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "properties": {
+                "engineerIdNumber": {
+                  "type": "string",
+                  "description": "跟台员身份证"
+                },
+                "status": {
+                  "type": "string",
+                  "description": "新的订单状态"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "summary": "查询订单详情",
+        "description": "查询订单详情",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderId",
+            "description": "订单id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/engineer": {
+      "post": {
+        "tags": [
+          "Engineer"
+        ],
+        "summary": "创建跟台员",
+        "description": "创建跟台员",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "跟台员信息",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Engineer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/engineer/{idNumber}": {
+      "delete": {
+        "tags": [
+          "Engineer"
+        ],
+        "summary": "删除跟台员",
+        "description": "删除跟台员信息",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idNumber",
+            "description": "身份证",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Engineer"
+        ],
+        "summary": "更新跟台员信息",
+        "description": "更新跟台员信息",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idNumber",
+            "description": "身份证",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "跟台员信息",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Engineer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Engineer"
+        ],
+        "summary": "查询跟台员",
+        "description": "查询跟台员信息",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idNumber",
+            "description": "身份证",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/institute": {
+      "post": {
+        "tags": [
+          "Institute"
+        ],
+        "summary": "创建组织",
+        "description": "创建组织",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Institute"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/institute/{socialNum}": {
+      "get": {
+        "tags": [
+          "Institute"
+        ],
+        "summary": "查询组织",
+        "description": "查询组织",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "socialNum",
+            "description": "组织ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Institute"
+        ],
+        "summary": "更新组织信息",
+        "description": "更新组织信息",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "socialNum",
+            "description": "要更新的组织id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Institute"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Institute"
+        ],
+        "summary": "删除组织",
+        "description": "删除一个组织",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "socialNum",
+            "description": "要删除的组织",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Engineer": {
+      "type": "object",
+      "required": [
+        "idNumber",
+        "name",
+        "mobile",
+        "instituteSocialNum"
+      ],
+      "properties": {
+        "idNumber": {
+          "type": "string",
+          "description": "身份证号"
+        },
+        "name": {
+          "type": "string",
+          "description": "姓名"
+        },
+        "mobile": {
+          "type": "string",
+          "description": "手机号"
+        },
+        "sex": {
+          "type": "integer",
+          "description": "性别"
+        },
+        "socialNum": {
+          "type": "string",
+          "description": "企业ID"
+        },
+        "birthDate": {
+          "type": "string",
+          "description": "出生日期"
+        },
+        "idValidityStDate": {
+          "type": "string",
+          "description": "出生日期"
+        },
+        "idValidityEndDate": {
+          "type": "string",
+          "description": "出生日期"
+        },
+        "birthDate": {
+          "type": "string",
+          "description": "出生日期"
+        },
+        "education": {
+          "type": "object",
+          "description": "学历信息",
+          "properties": {
+            "degree": {
+              "type": "string"
+            },
+            "school": {
+              "type": "string"
+            },
+            "major": {
+              "type": "string"
+            },
+            "certificationPicUrl": {
+              "type": "string"
+            },
+            "certificationPicHash": {
+              "type": "string"
+            }
+          }
+        },
+        "credentials": {
+          "type": "object",
+          "description": "资质",
+          "properties": {
+            "degree": {
+              "type": "string"
+            },
+            "school": {
+              "type": "string"
+            },
+            "major": {
+              "type": "string"
+            },
+            "certificationPicUrl": {
+              "type": "string"
+            }
+          }
+        },
+        "idFrontPicUrl": {
+          "type": "string",
+          "description": "身份证正面图片地址"
+        },
+        "idBackPicUrl": {
+          "type": "string",
+          "description": "身份证反面图片地址"
+        }
+      }
+    },
+    "Institute": {
+      "type": "object",
+      "required": [
+        "name",
+        "socialNum"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "组织名称"
+        },
+        "socialNum": {
+          "type": "string",
+          "description": "组织ID"
+        },
+        "address": {
+          "type": "string",
+          "description": "地址"
+        },
+        "registerTime": {
+          "type": "string",
+          "description": "注册时间"
+        },
+        "businessLicencePicUrl": {
+          "type": "string",
+          "description": "营业执照图片地址"
+        },
+        "businessLicencePicHash": {
+          "type": "string",
+          "description": "营业执照图片哈希"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "required": [
+        "orderId",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "名称"
+        },
+        "orderId": {
+          "type": "string",
+          "description": "订单id"
+        },
+        "amount": {
+          "type": "double",
+          "description": "订单金额"
+        },
+        "hospital": {
+          "type": "string",
+          "description": "医院"
+        },
+        "region": {
+          "type": "string",
+          "description": "地区"
+        },
+        "remark": {
+          "type": "string",
+          "description": "附注"
+        },
+        "operationTime": {
+          "type": "string",
+          "description": "手术时间"
+        },
+        "instituteSocialNum": {
+          "type": "string",
+          "description": "企业ID"
+        },
+        "engineerIdNumber": {
+          "type": "string",
+          "description": "跟台员身份证"
+        },
+        "equipments": {
+          "type": "array",
+          "description": "器械信息",
+          "items": {
+            "$ref": "#/definitions/Equipment"
+          }
+        },
+        "status": {
+          "type": "int",
+          "description": "订单状态"
+        }
+      }
+    },
+    "Equipment": {
+      "type": "object",
+      "properties": {
+        "equipmentName": {
+          "type": "string"
+        },
+        "equipmentQuantity": {
+          "type": "string"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

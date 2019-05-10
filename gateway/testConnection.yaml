@@ -1,0 +1,50 @@
+---
+name: "test-network"
+
+x-type: "hlfv1"
+
+description: "The test network"
+
+version: "1.0"
+
+channels:
+  testchannel:
+    orderers:
+    - orderer0.example.com
+
+    peers:
+      peer0.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+organizations:
+  exampleOrg:
+    mspid: exampleMSP
+    peers:
+    - peer0.example.com
+    certificateAuthorities:
+    - ca-example
+
+orderers:
+  orderer0.example.com:
+    url: grpc://localhost:7050
+
+    grpcOptions:
+      ssl-target-name-override: orderer0.example.com
+
+peers:
+  peer0.example.com:
+    url: grpc://localhost:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.example.com
+      request-timeout: 120001
+
+certificateAuthorities:
+  ca-example:
+    url: http://localhost:7054
+    httpOptions:
+      verify: false
+
+    caName: ca
