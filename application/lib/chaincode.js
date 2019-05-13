@@ -15,7 +15,6 @@ async function send(identity, type, channel, contractName, func, ...args) {
         } else {
             response = await contract.submitTransaction(func, ...args);
         }
-        console.log('======== transaction response. ===========');
         return response
     } finally {
         gateway.disconnect();

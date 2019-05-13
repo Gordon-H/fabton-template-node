@@ -1,7 +1,7 @@
 'use strict';
 const factory = require('./factory.js');
 const ADMIN = 'admin'
-const CA_NAME = 'ca-forchain'
+const CA_NAME = 'ca'
 
 constructor(
     create('common')
@@ -13,15 +13,11 @@ async function create(orgName) {
         const ca = gateway.getClient().getCertificateAuthority(CA_NAME);
         const adminIdentity = gateway.getCurrentIdentity();
         const af = ca.newAffiliationService()
-        // const aa = await af.getOne('aaa', adminIdentity)
-        // console.log(aa.Messages)
-        // console.log(aa == null)
         const res = await af.create({name: orgName}, adminIdentity)
         return res
     } finally {
         gateway.disconnect();
     }
-
 }
 
 async function listOrg() {

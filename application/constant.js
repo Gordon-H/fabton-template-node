@@ -1,8 +1,8 @@
 const QUERY = 'query'
 const INVOKE = 'invoke'
-const ADMIN = "admin4medical"
-const CH = 'medicalchannel'
-const CONTRACT = 'medicalLedger'
+const ADMIN = "admin"
+const CH = 'testchannel'
+const CONTRACT = 'testLedger'
 
 // const contractDomain = 'org.forchain.medical'
 
