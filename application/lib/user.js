@@ -9,7 +9,7 @@ const {X509WalletMixin} = require('fabric-network');
 const ADMIN = 'admin'
 const MSPID = 'forchainMSP'
 const CA_NAME = 'ca-forchain'
-const CHANNEL_NAME = 'medicalchannel'
+const CHANNEL_NAME = 'myc'
 
 
 constructor(

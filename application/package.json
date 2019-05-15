@@ -1,7 +1,7 @@
 {
-  "name": "nodejs",
-  "version": "1.0.0",
-  "description": "",
+  "name": "{{app}}",
+  "version": "{{version}}",
+  "description": "{{description}}",
   "main": "main.js",
   "scripts": {
     "start": "node main.js"
@@ -12,9 +12,9 @@
   "dependencies": {
     "express": "^4.15.3",
     "request-promise": "^4.2.4",
-    "fabric-network": "1.4.0",
-    "fabric-ca-client": "1.4.0",
-    "fabric-client": "1.4.0",
+    "fabric-network": "{{fabricVersion}}",
+    "fabric-ca-client": "{{fabricVersion}}",
+    "fabric-client": "{{fabricVersion}}",
     "js-yaml": "^3.12.0",
     "body-parser": "^1.17.2",
     "compression": "^1.7.2",

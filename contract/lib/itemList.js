@@ -6,7 +6,7 @@ SPDX-License-Identifier: Apache-2.0
 
 
 // Utility class for collections of ledger states --  a state list
-const StateList = require('./../ledger-api/statelist.js');
+const StateList = require('./../ledger-api/stateList.js');
 
 const {{name}}= require('./{{camelize name}}.js');
 

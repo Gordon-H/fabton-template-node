@@ -10,7 +10,7 @@ const State = require('./../ledger-api/state.js');
 class {{name}} extends State {
 
     constructor(obj) {
-        super({{name}}.getClass(), [{{#each keys}}{{this}},{{/each}}]);
+        super({{name}}.getClass(), [{{#each keys}}obj.{{this}},{{/each}}]);
         Object.assign(this, obj);
     }
 
@@ -34,7 +34,7 @@ class {{name}} extends State {
     }
 
     static getClass() {
-        return {{class}};
+        return "{{namespace}}";
     }
 }
 

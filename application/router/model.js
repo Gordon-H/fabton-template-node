@@ -51,7 +51,7 @@ async function create{{name}}(o) {
 
 async function update{{name}}(params, o) {
     try {
-        let res = await chaincodeSvc.send(ADMIN, INVOKE, CH, CONTRACT, 'update{{name}}', {{#each keys}}params.{{this}},{{/each}}, JSON.stringify(o))
+        let res = await chaincodeSvc.send(ADMIN, INVOKE, CH, CONTRACT, 'update{{name}}', {{#each keys}}params.{{this}},{{/each}} JSON.stringify(o))
         return parseResult(res, {{name}})
     } catch (error) {
         console.log(`========  Error update {{name}}. ${error}  =========`);
@@ -60,7 +60,7 @@ async function update{{name}}(params, o) {
     }
 }
 
-async function delete{{name}}({{#each keys}}params.{{this}},{{/each}}) {
+async function delete{{name}}(params) {
     try {
         let res = await chaincodeSvc.send(ADMIN, INVOKE, CH, CONTRACT, 'delete{{name}}', {{#each keys}}params.{{this}},{{/each}})
         return resputil.success(res.toString())

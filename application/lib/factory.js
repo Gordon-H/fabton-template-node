@@ -6,7 +6,7 @@ const path = require('path');
 
 const yaml = require('js-yaml');
 const walletPath = path.join(process.cwd(), '..', 'wallet');
-const ccpPath = path.join(process.cwd(), '..', 'gateway', 'networkConnection.yaml');
+const ccpPath = path.join(process.cwd(), '..', 'gateway', 'testConnection.yaml');
 let connectionProfile = yaml.safeLoad(fs.readFileSync(ccpPath, 'utf8'));
 
 function getWallet() {

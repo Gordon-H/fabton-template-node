@@ -1,7 +1,7 @@
 {
-    "name": "papernet-js",
-    "version": "0.0.1",
-    "description": "Papernet Contract",
+    "name": "{{app}}",
+    "version": "{{version}}",
+    "description": "{{description}}",
     "main": "index.js",
     "engines": {
         "node": ">=8",
@@ -12,14 +12,18 @@
         "pretest": "npm run lint",
         "test": "nyc mocha test --recursive",
         "start": "fabric-chaincode-node start",
-        "mocha": "mocha test --recursive"
+        "mocha": "mocha test --recursive",
+        "dev-init": "../devmode/scripts/dev-init.sh",
+        "dev-start": "fabric-chaincode-node start --peer.address 127.0.0.1:7052 --chaincode-id-name {{contract}}:0",
+        "dev-deploy": "../devmode/scripts/dev-deploy.sh",
+        "dev-clear": "docker-compose -f ../devmode/docker-contract-dev.yaml down"
     },
     "engineStrict": true,
-    "author": "hyperledger",
+    "author": "{{author}}",
     "license": "Apache-2.0",
     "dependencies": {
-        "fabric-contract-api": "{{version}}",
-        "fabric-shim": "{{version}}"
+        "fabric-contract-api": "{{fabricVersion}}",
+        "fabric-shim": "{{fabricVersion}}"
     },
     "devDependencies": {
         "chai": "^4.1.2",

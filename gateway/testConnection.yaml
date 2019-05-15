@@ -8,7 +8,7 @@ description: "The test network"
 version: "1.0"
 
 channels:
-  testchannel:
+  myc:
     orderers:
     - orderer0.example.com
 

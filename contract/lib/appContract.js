@@ -24,7 +24,7 @@ class {{app}}Context extends Context {
 class {{app}}Contract extends Contract{
 
     constructor() {
-        super("{{domain}}");
+        super("{{namespace}}");
     }
 
     createContext() {
@@ -51,12 +51,12 @@ class {{app}}Contract extends Contract{
         if (item != null) {
             throw new Error("The item already exists")
         }
-        item = {{name}}.createInstance({{#each keys}}{{this}},{{/each}}{{#each properties}}{{this}},{{/each}})
+        item = {{name}}.createInstance({{#each keys}}o.{{this}},{{/each}}{{#each properties}}{{this}},{{/each}})
         await ctx.{{camelize name}}List.addState(item);
         return item.toBuffer();
     }
 
-    async update{{name}}(ctx, {{#each keys}} o.{{this}},{{/each}}, str) {
+    async update{{name}}(ctx, o, str) {
         const obj = JSON.parse(str);
         let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
         let item = await ctx.{{camelize name}}List.getState(key);
@@ -68,7 +68,7 @@ class {{app}}Contract extends Contract{
         return item.toBuffer();
     }
 
-    async select{{name}}(ctx, {{#each keys}} o.{{this}},{{/each}}) {
+    async select{{name}}(ctx, o) {
         let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
         let item = await ctx.{{camelize name}}List.getState(key);
         if (item) {
@@ -78,7 +78,7 @@ class {{app}}Contract extends Contract{
         }
     }
 
-    async delete{{name}}(ctx, {{#each keys}} o.{{this}},{{/each}}) {
+    async delete{{name}}(ctx, o) {
         let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
         await ctx.{{camelize name}}List.deleteState(key);
         return "success";

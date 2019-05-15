@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  orderer:
+    container_name: orderer
+    image: hyperledger/fabric-orderer:{{fabricVersion}}
+    environment:
+    - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+    - ORDERER_GENERAL_GENESISPROFILE=SampleDevModeSolo
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+    - ../devmode/configtx.yaml:/etc/hyperledger/fabric/configtx.yaml
+    ports:
+    - 7050:7050
+
+  peer:
+    container_name: peer
+    image: hyperledger/fabric-peer:{{version}}
+    environment:
+    - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: peer node start --peer-chaincodedev=true
+    volumes:
+      - ../contract:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode
+      - ../devmode/myc.tx:/opt/gopath/src/github.com/hyperledger/fabric/peer/myc.tx
+    ports:
+    - 7051:7051
+    - 7052:7052
+    - 7053:7053
+    depends_on:
+    - orderer
+

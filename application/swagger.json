@@ -71,7 +71,7 @@
         }
       }
     },
-    "/{{camelize name}}{{#each keys}}/\{{{this}}\}{{/each}}": {
+    "/{{camelize name}}{{#each keys}}/{ {{this}} }{{/each}}": {
       "put": {
         "tags": [
           "{{name}}"
@@ -135,7 +135,7 @@
             "required": true,
             "type": "string"
           }
-            {{unless @last}},{{/unless}}
+            {{#unless @last}},{{/unless}}
           {{/each}}
         ],
         "responses": {
@@ -176,7 +176,7 @@
             "required": true,
             "type": "string"
           }
-          {{unless @last}},{{/unless}}
+          {{#unless @last}},{{/unless}}
           {{/each}}
         ],
         "responses": {
@@ -202,7 +202,8 @@
           }
         }
       }
-    }
+    }{{#unless @last}},{{/unless}}
+  {{/each}}
   },
   "definitions": {
     {{#each models}}
@@ -210,7 +211,7 @@
       "type": "object",
       "required": [
         {{#each keys}}
-        "{{this}}",
+        "{{this}}"{{#unless @last}},{{/unless}}
         {{/each}}
       ],
       "properties": {
