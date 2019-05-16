@@ -25,7 +25,6 @@ async function getGateWay(identity) {
         wallet, identity: identity, discovery: {enabled: false, asLocalhost: true}
     })
     return gateway
-
 }
 
 module.exports = {getWallet, getGateWay};

@@ -1,4 +1,3 @@
----
 #
 # The network connection profile provides client applications the information about the target
 # blockchain network that are necessary for the applications to interact with it. These are all
