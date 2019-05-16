@@ -51,7 +51,7 @@ class {{app}}Contract extends Contract{
         if (item != null) {
             throw new Error("The item already exists")
         }
-        item = {{name}}.createInstance({{#each keys}}o.{{this}},{{/each}}{{#each properties}}{{this}},{{/each}})
+        item = {{name}}.createInstance({{#each keys}}o.{{this}}, {{/each}}{{#each properties}}o.{{this}}, {{/each}})
         await ctx.{{camelize name}}List.addState(item);
         return item.toBuffer();
     }

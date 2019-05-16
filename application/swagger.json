@@ -215,6 +215,12 @@
         {{/each}}
       ],
       "properties": {
+      {{#each keys}}
+          "{{this}}": {
+          "type": "string",
+          "description": "{{this}}"
+          },
+      {{/each}}
       {{#each properties}}
         "{{this}}": {
           "type": "string",
