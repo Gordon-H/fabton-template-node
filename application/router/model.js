@@ -1,10 +1,15 @@
-const {ADMIN, CH, CONTRACT, INVOKE, QUERY} = require("../constant")
+const {INVOKE, QUERY} = require("../constant")
+const config = require("../fabric-config")
 const chaincodeSvc = require('../lib/chaincode.js')
 const resputil = require('../util/resputil')
 
 const express = require('express');
 const router = express.Router();
 const {{name}}= require('../../contract/lib/{{camelize name}}.js');
+
+const ADMIN = config.defaultUser
+const CH = config.channel
+const CONTRACT =config.contract
 
 router.get('{{#each keys}}/:{{this}}{{/each}}', function (req, res) {
     select{{name}}(req.params).then((r) => {
