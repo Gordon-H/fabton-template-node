@@ -19,8 +19,8 @@ channels:
         eventSource: true
 
 organizations:
-  exampleOrg:
-    mspid: exampleMSP
+  SampleOrg:
+    mspid: SampleOrg
     peers:
     - peer0.example.com
     certificateAuthorities:

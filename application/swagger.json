@@ -71,7 +71,7 @@
         }
       }
     },
-    "/{{camelize name}}{{#each keys}}/{ {{this}} }{{/each}}": {
+    "/{{camelize name}}{{#each keys}}/{ {{~this~}} }{{/each}}": {
       "put": {
         "tags": [
           "{{name}}"
@@ -219,7 +219,7 @@
         "{{this}}": {
           "type": "string",
           "description": "{{this}}"
-        },
+        }{{#unless @last}},{{/unless}}
           {{/each}}
       }
     },

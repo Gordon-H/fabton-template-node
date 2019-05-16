@@ -56,9 +56,9 @@ class {{app}}Contract extends Contract{
         return item.toBuffer();
     }
 
-    async update{{name}}(ctx, o, str) {
+    async update{{name}}(ctx, {{#each keys}} {{this}},{{/each}} str) {
         const obj = JSON.parse(str);
-        let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
+        let key = {{name}}.makeKey([{{#each keys}} {{this}},{{/each}}]);
         let item = await ctx.{{camelize name}}List.getState(key);
         if (item == null) {
             throw new Error("The {{name}} doesn't exist")
@@ -68,8 +68,8 @@ class {{app}}Contract extends Contract{
         return item.toBuffer();
     }
 
-    async select{{name}}(ctx, o) {
-        let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
+    async select{{name}}(ctx,{{#each keys}} {{this}},{{/each}} ) {
+        let key = {{name}}.makeKey([{{#each keys}} {{this}},{{/each}}]);
         let item = await ctx.{{camelize name}}List.getState(key);
         if (item) {
             return item.toBuffer()
@@ -78,8 +78,8 @@ class {{app}}Contract extends Contract{
         }
     }
 
-    async delete{{name}}(ctx, o) {
-        let key = {{name}}.makeKey([{{#each keys}} o.{{this}},{{/each}}]);
+    async delete{{name}}(ctx,{{#each keys}} {{this}},{{/each}} ) {
+        let key = {{name}}.makeKey([{{#each keys}} {{this}},{{/each}}]);
         await ctx.{{camelize name}}List.deleteState(key);
         return "success";
     }

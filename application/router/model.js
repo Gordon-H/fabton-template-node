@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 const {{name}}= require('../../contract/lib/{{camelize name}}.js');
 
-router.get('{{#each keys}}/{{this}}{{/each}}', function (req, res) {
+router.get('{{#each keys}}/:{{this}}{{/each}}', function (req, res) {
     select{{name}}(req.params).then((r) => {
         res.send(r);
     })
@@ -16,12 +16,12 @@ router.post('/', function (req, res) {
         res.send(r);
     })
 });
-router.delete('{{#each keys}}/{{this}}{{/each}}', function (req, res) {
+router.delete('{{#each keys}}/:{{this}}{{/each}}', function (req, res) {
     delete{{name}}(req.params).then((r) => {
         res.send(r);
     })
 });
-router.put('{{#each keys}}/{{this}}{{/each}}', function (req, res) {
+router.put('{{#each keys}}/:{{this}}{{/each}}', function (req, res) {
     update{{name}}(req.params, req.body).then((r) => {
         res.send(r);
     })

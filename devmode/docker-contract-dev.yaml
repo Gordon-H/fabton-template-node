@@ -16,7 +16,7 @@ services:
 
   peer:
     container_name: peer
-    image: hyperledger/fabric-peer:{{version}}
+    image: hyperledger/fabric-peer:{{fabricVersion}}
     environment:
     - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
